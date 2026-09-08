@@ -1,0 +1,45 @@
+name: app_dashf
+description: "A modern ecommerce merchant dashboard built with Flutter."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management & Utils
+  provider: ^6.1.2
+  intl: ^0.20.3
+  shared_preferences: ^2.2.3
+
+  # Networking & Realtime
+  http: ^1.2.1
+  socket_io_client: ^2.0.3+1
+  url_launcher: ^6.2.6
+
+  # UI, Icons & Animations
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.0
+
+  # File & Image Pickers
+  file_picker: ^8.0.0
+  image_picker: ^1.1.0
+  lucide_icons_flutter: ^3.1.19
+  flutter_local_notifications: ^22.3.0
+  flutter_background_service: ^5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/data/wilayas_tarifs.json
