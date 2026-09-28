@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart' hide TextDirection;
 import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
+import '../constants/api_endpoints.dart';
 import '../providers/orders_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/realtime_notification_provider.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   Future<void> _openLiveStore(BuildContext context) async {
-    final uri = Uri.parse('http://192.168.8.200:3000');
+    final uri = Uri.parse('http://${ApiEndpoints.defaultLocalIp}:3000');
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
@@ -38,9 +39,14 @@ class HomeScreen extends StatelessWidget {
 
     final currencyFormatter = NumberFormat('#,###');
 
-    // Calculate metrics
+    // Calculate metrics: Only count confirmed / active sales (strictly exclude cancelled and returned)
     final orders = ordersProvider.orders;
-    final totalSales = orders.fold<double>(0, (sum, o) => sum + o.totalAmount);
+    final confirmedOrders = orders.where((o) =>
+        o.status == 'confirmed' ||
+        o.status == 'shipped' ||
+        o.status == 'delivered' ||
+        o.status == 'processing');
+    final totalSales = confirmedOrders.fold<double>(0, (sum, o) => sum + o.totalAmount);
     final pendingCount = orders.where((o) => o.status == 'pending').length;
     final deliveredCount = orders.where((o) => o.status == 'delivered').length;
     final recentOrders = orders.take(5).toList();
@@ -81,27 +87,13 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 3),
-                      Row(
-                        textDirection: TextDirection.rtl,
-                        children: [
-                          Container(
-                            width: 8,
-                            height: 8,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: realtimeNotif.isConnected ? AppColors.success : AppColors.danger,
-                            ),
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            realtimeNotif.isConnected ? 'متصل بالخادم الفوري ⚡' : 'جاري الاتصال...',
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                              color: realtimeNotif.isConnected ? AppColors.success : AppColors.textMuted,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        'لوحة إدارة المتجر والطلبيات',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textMutedOf(context),
+                        ),
                       ),
                     ],
                   ),
@@ -151,7 +143,7 @@ class HomeScreen extends StatelessWidget {
                     icon: LucideIcons.trendingUp,
                     iconColor: AppColors.primary,
                     iconBgColor: AppColors.primaryBg,
-                    badgeText: '+12%',
+                    badgeText: 'مؤكدة',
                     badgeColor: AppColors.success,
                   ),
                   KpiCard(

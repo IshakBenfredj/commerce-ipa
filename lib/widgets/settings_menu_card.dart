@@ -30,9 +30,9 @@ class SettingsMenuCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
           decoration: BoxDecoration(
-            color: AppColors.surface,
+            color: AppColors.surfaceOf(context),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: AppColors.borderOf(context)),
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFF1E1B4B).withValues(alpha: 0.02),
@@ -49,7 +49,7 @@ class SettingsMenuCard extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: isWarning ? AppColors.dangerBg : AppColors.primaryBg,
+                  color: isWarning ? (AppColors.isDark(context) ? AppColors.darkDangerBg : AppColors.dangerBg) : AppColors.primaryBgOf(context),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -76,7 +76,7 @@ class SettingsMenuCard extends StatelessWidget {
                               fontSize: 13,
                               fontWeight: FontWeight.w800,
                               color:
-                                  isWarning ? AppColors.danger : AppColors.text,
+                                  isWarning ? AppColors.danger : AppColors.textOf(context),
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -89,7 +89,7 @@ class SettingsMenuCard extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: AppColors.primaryBg,
+                              color: AppColors.primaryBgOf(context),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text(
@@ -107,9 +107,10 @@ class SettingsMenuCard extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       subtitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 11,
-                        color: AppColors.textSub,
+                        color: AppColors.textSubOf(context),
+                        fontWeight: FontWeight.w500,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -120,8 +121,11 @@ class SettingsMenuCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               // Left Chevron Arrow (in RTL)
-              const Icon(LucideIcons.chevronLeft,
-                  size: 18, color: AppColors.textMuted),
+              Icon(
+                LucideIcons.chevronLeft,
+                size: 16,
+                color: AppColors.textMutedOf(context),
+              ),
             ],
           ),
         ),

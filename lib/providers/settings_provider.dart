@@ -48,6 +48,13 @@ class SettingsProvider with ChangeNotifier {
     } catch (e) {
       _errorMessage = e.toString();
       _isLoading = false;
+      _settings ??= StoreSettings(
+        storeNameAr: 'المتجر الجزائري الحديث',
+        phone: '0541790205',
+        customColors: CustomColors(),
+        socialLinks: SocialLinks(),
+        wilayasShipping: await _loadDefaultWilayasFromAsset(),
+      );
       notifyListeners();
     }
   }
@@ -57,13 +64,25 @@ class SettingsProvider with ChangeNotifier {
       final jsonString = await rootBundle.loadString('assets/data/wilayas_tarifs.json');
       final data = jsonDecode(jsonString);
       if (data['wilayas'] is List) {
-        return (data['wilayas'] as List).map((w) => WilayaTarif.fromJson(w)).toList();
+        final list = (data['wilayas'] as List).map((w) => WilayaTarif.fromJson(w)).toList();
+        if (list.isNotEmpty) return list;
       }
     } catch (e) {
       // ignore: avoid_print
       print('Failed to load assets/data/wilayas_tarifs.json: $e');
     }
-    return [];
+
+    // Direct in-memory fallback for all 69 wilayas
+    return WilayaTarif.defaultWilayaNames.entries.map((e) {
+      return WilayaTarif(
+        code: e.key,
+        nameAr: e.value.$1,
+        nameFr: e.value.$2,
+        tarifDomicile: 700,
+        tarifBureau: 400,
+        active: true,
+      );
+    }).toList();
   }
 
   Future<bool> saveSettings() async {

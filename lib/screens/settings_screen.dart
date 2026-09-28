@@ -3,6 +3,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../constants/colors.dart';
 import '../providers/settings_provider.dart';
+import '../providers/theme_provider.dart';
 import '../widgets/settings_menu_card.dart';
 import 'settings/hero_settings_screen.dart';
 import 'settings/appearance_settings_screen.dart';
@@ -11,51 +12,10 @@ import 'settings/contact_settings_screen.dart';
 import 'settings/shipping_settings_screen.dart';
 import 'settings/notifications_settings_screen.dart';
 import 'settings/maintenance_settings_screen.dart';
-import 'settings/about_settings_screen.dart';
 import 'settings/coupons_settings_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
-
-  void _handleLogout(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
-        child: AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title: const Text('تسجيل الخروج',
-              style: TextStyle(fontWeight: FontWeight.w800)),
-          content: const Text(
-              'هل أنت متأكد من رغبتك في تسجيل الخروج من لوحة تحكم المتجر؟'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text('إلغاء',
-                  style: TextStyle(color: AppColors.textSub)),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text('تم تسجيل الخروج بنجاح'),
-                      backgroundColor: AppColors.primary),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.danger,
-                foregroundColor: Colors.white,
-                elevation: 0,
-              ),
-              child: const Text('تسجيل الخروج'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,14 +39,14 @@ class SettingsScreen extends StatelessWidget {
               // ── 1. Header & Store Avatar Profile ────────────────────────
               Column(
                 children: [
-                  const Align(
+                  Align(
                     alignment: Alignment.centerRight,
                     child: Text(
                       'إعدادات المتجر',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w900,
-                        color: AppColors.text,
+                        color: AppColors.textOf(context),
                       ),
                     ),
                   ),
@@ -99,10 +59,10 @@ class SettingsScreen extends StatelessWidget {
                         height: 86,
                         padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.surfaceOf(context),
                           shape: BoxShape.circle,
                           border: Border.all(
-                              color: const Color(0xFFE0E3F5), width: 2),
+                              color: AppColors.borderOf(context), width: 2),
                           boxShadow: [
                             BoxShadow(
                               color: AppColors.primary.withValues(alpha: 0.12),
@@ -117,13 +77,13 @@ class SettingsScreen extends StatelessWidget {
                                   storeLogo,
                                   fit: BoxFit.cover,
                                   errorBuilder: (_, __, ___) => Container(
-                                    color: AppColors.primaryBg,
+                                    color: AppColors.primaryBgOf(context),
                                     child: const Icon(LucideIcons.store,
                                         size: 36, color: AppColors.primary),
                                   ),
                                 )
                               : Container(
-                                  color: AppColors.primaryBg,
+                                  color: AppColors.primaryBgOf(context),
                                   child: const Icon(LucideIcons.store,
                                       size: 36, color: AppColors.primary),
                                 ),
@@ -138,7 +98,9 @@ class SettingsScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: AppColors.success,
                             shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 2.5),
+                            border: Border.all(
+                                color: AppColors.surfaceOf(context),
+                                width: 2.5),
                           ),
                         ),
                       ),
@@ -147,24 +109,136 @@ class SettingsScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   Text(
                     storeName,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w900,
-                      color: AppColors.text,
+                      color: AppColors.textOf(context),
                     ),
                   ),
                   const SizedBox(height: 2),
                   Text(
                     storePhone,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.textSub,
+                      color: AppColors.textSubOf(context),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
+
+              // ── Theme Mode Selector Card (Dark Mode) ──
+              Consumer<ThemeProvider>(
+                builder: (context, themeProvider, _) {
+                  final isDark = themeProvider.isDark(context);
+                  final currentMode = themeProvider.themeMode;
+                  return Container(
+                    padding: const EdgeInsets.all(14),
+                    margin: const EdgeInsets.only(bottom: 14),
+                    decoration: BoxDecoration(
+                      color: AppColors.surfaceOf(context),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: AppColors.borderOf(context)),
+                      boxShadow: [
+                        BoxShadow(
+                          color:
+                              const Color(0xFF1E1B4B).withValues(alpha: 0.02),
+                          blurRadius: 4,
+                          offset: const Offset(0, 1.5),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
+                          textDirection: TextDirection.rtl,
+                          children: [
+                            Container(
+                              width: 38,
+                              height: 38,
+                              decoration: BoxDecoration(
+                                color: AppColors.primaryBgOf(context),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Icon(
+                                isDark ? LucideIcons.moon : LucideIcons.sun,
+                                size: 20,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              textDirection: TextDirection.rtl,
+                              children: [
+                                Text(
+                                  'مظهر التطبيق (الوضع الداكن)',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.textOf(context),
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  isDark
+                                      ? 'الوضع الداكن مفعّل'
+                                      : 'الوضع الفاتح مفعّل',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: AppColors.textSubOf(context),
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: isDark
+                                ? const Color(0xFF1E202C)
+                                : const Color(0xFFF1F3F9),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            children: [
+                              _buildThemeButton(
+                                context: context,
+                                label: 'فاتح',
+                                icon: LucideIcons.sun,
+                                isSelected: currentMode == ThemeMode.light,
+                                onTap: () =>
+                                    themeProvider.setThemeMode(ThemeMode.light),
+                              ),
+                              _buildThemeButton(
+                                context: context,
+                                label: 'داكن',
+                                icon: LucideIcons.moon,
+                                isSelected: currentMode == ThemeMode.dark,
+                                onTap: () =>
+                                    themeProvider.setThemeMode(ThemeMode.dark),
+                              ),
+                              _buildThemeButton(
+                                context: context,
+                                label: 'تلقائي',
+                                icon: LucideIcons.monitor,
+                                isSelected: currentMode == ThemeMode.system,
+                                onTap: () => themeProvider
+                                    .setThemeMode(ThemeMode.system),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
 
               // ── 2. Settings Menu Cards ──────────────────────────────────
               SettingsMenuCard(
@@ -278,41 +352,56 @@ class SettingsScreen extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 30),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
-              SettingsMenuCard(
-                title: 'حول لوحة التحكم',
-                subtitle: 'الإصدار، حالة الاتصال ومستودع الكود',
-                icon: LucideIcons.info,
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (_) => const AboutSettingsScreen()),
-                  );
-                },
+  Widget _buildThemeButton({
+    required BuildContext context,
+    required String label,
+    required IconData icon,
+    required bool isSelected,
+    required VoidCallback onTap,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(
+            color: isSelected ? AppColors.primary : Colors.transparent,
+            borderRadius: BorderRadius.circular(9),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 14,
+                color: isSelected
+                    ? Colors.white
+                    : (isDark
+                        ? const Color(0xFF9CA3AF)
+                        : const Color(0xFF6B7280)),
               ),
-              const SizedBox(height: 24),
-
-              // ── 3. Logout Button ────────────────────────────────────────
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () => _handleLogout(context),
-                  icon: const Icon(LucideIcons.logOut, size: 18),
-                  label: const Text('تسجيل الخروج',
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w800)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.danger,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    elevation: 0,
-                  ),
+              const SizedBox(width: 5),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: isSelected ? FontWeight.w900 : FontWeight.w700,
+                  color: isSelected
+                      ? Colors.white
+                      : (isDark
+                          ? const Color(0xFF9CA3AF)
+                          : const Color(0xFF6B7280)),
                 ),
               ),
-              const SizedBox(height: 30),
             ],
           ),
         ),

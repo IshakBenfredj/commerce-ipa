@@ -55,15 +55,15 @@ Future<void> initializeBackgroundService() async {
     await androidNotificationPlugin.requestNotificationsPermission();
   }
 
-  // 3. Configure Background Service
+  // 3. Configure Background Service (Run silently without persistent connection notifications)
   await service.configure(
     androidConfiguration: AndroidConfiguration(
       onStart: onBackgroundServiceStart,
       autoStart: true,
-      isForegroundMode: true,
+      isForegroundMode: false,
       notificationChannelId: foregroundChannelId,
-      initialNotificationTitle: '⚡ متجر الجزائر - جاري المراقبة',
-      initialNotificationContent: 'متصل بالخادم وجاهز لاستقبال الطلبيات في الخلفية',
+      initialNotificationTitle: '',
+      initialNotificationContent: '',
       foregroundServiceNotificationId: 999,
       foregroundServiceTypes: [AndroidForegroundType.dataSync],
     ),
@@ -73,6 +73,11 @@ Future<void> initializeBackgroundService() async {
       onBackground: onIosBackground,
     ),
   );
+
+  // Cancel any lingering foreground notification
+  try {
+    await flutterLocalNotificationsPlugin.cancel(id: 999);
+  } catch (_) {}
 }
 
 @pragma('vm:entry-point')
@@ -112,21 +117,11 @@ void onBackgroundServiceStart(ServiceInstance service) async {
       bgSocket!.onConnect((_) {
         // ignore: avoid_print
         print('⚡ [BG Service] Connected to Socket.IO on: ${ApiEndpoints.socketUrl}');
-        if (service is AndroidServiceInstance) {
-          service.setForegroundNotificationInfo(
-            title: '🟢 متجر الجزائر - متصل',
-            content: 'جاهز لاستقبال الطلبيات في الخلفية',
-          );
-        }
       });
 
       bgSocket!.onDisconnect((_) {
-        if (service is AndroidServiceInstance) {
-          service.setForegroundNotificationInfo(
-            title: '🟡 متجر الجزائر - جاري إعادة الاتصال...',
-            content: 'انقطع الاتصال بالخادم مؤقتاً',
-          );
-        }
+        // ignore: avoid_print
+        print('❌ [BG Service] Disconnected from Socket.IO');
       });
 
       bgSocket!.on('new_order', (data) {

@@ -38,12 +38,17 @@ class BannerItem {
   Map<String, dynamic> toJson() => {
     'id': id,
     'title': title,
-    'subtitle': subtitle,
-    'badge': badge,
-    'imageUrl': imageUrl,
-    'linkUrl': linkUrl,
-    'ctaText': ctaText,
+    'subtitle': subtitle ?? '',
+    'badge': badge ?? '',
+    'imageUrl': imageUrl ?? '',
+    'image_url': imageUrl ?? '',
+    'linkUrl': linkUrl ?? '',
+    'link_url': linkUrl ?? '',
+    'link': linkUrl ?? '',
+    'ctaText': ctaText ?? '',
+    'cta_text': ctaText ?? '',
     'isActive': isActive,
+    'active': isActive,
     'order': order,
   };
 }

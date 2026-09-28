@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../constants/colors.dart';
 import '../../models/store_settings.dart';
 import '../../providers/settings_provider.dart';
+import '../../providers/theme_provider.dart';
 
 class AppearanceSettingsScreen extends StatefulWidget {
   const AppearanceSettingsScreen({super.key});
@@ -122,25 +123,25 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.bg,
+        backgroundColor: AppColors.bgOf(context),
         appBar: AppBar(
-          backgroundColor: AppColors.surface,
+          backgroundColor: AppColors.surfaceOf(context),
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(LucideIcons.chevronRight, color: AppColors.text),
+            icon: Icon(LucideIcons.chevronRight, color: AppColors.textOf(context)),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: const Text(
+          title: Text(
             'مظهر وألوان المتجر',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.textOf(context)),
           ),
           centerTitle: true,
         ),
         bottomNavigationBar: Container(
           padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-            color: AppColors.surface,
-            border: Border(top: BorderSide(color: AppColors.border)),
+          decoration: BoxDecoration(
+            color: AppColors.surfaceOf(context),
+            border: Border(top: BorderSide(color: AppColors.borderOf(context))),
           ),
           child: ElevatedButton.icon(
             onPressed: isSaving ? null : _handleSave,
@@ -162,25 +163,130 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // ── 0. Theme Mode Card (Dark Mode) ──
+              Consumer<ThemeProvider>(
+                builder: (context, themeProvider, _) {
+                  final isDark = themeProvider.isDark(context);
+                  final currentMode = themeProvider.themeMode;
+                  return Container(
+                    padding: const EdgeInsets.all(14),
+                    margin: const EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                      color: AppColors.surfaceOf(context),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: AppColors.borderOf(context)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF1E1B4B).withValues(alpha: 0.02),
+                          blurRadius: 4,
+                          offset: const Offset(0, 1.5),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 38,
+                              height: 38,
+                              decoration: BoxDecoration(
+                                color: AppColors.primaryBgOf(context),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Icon(
+                                isDark ? LucideIcons.moon : LucideIcons.sun,
+                                size: 20,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'وضع عرض التطبيق (Dark Mode)',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.textOf(context),
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  isDark ? 'الوضع الداكن مفعّل' : 'الوضع الفاتح مفعّل',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: AppColors.textSubOf(context),
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: isDark ? const Color(0xFF1E202C) : const Color(0xFFF1F3F9),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            children: [
+                              _buildThemeBtn(
+                                context: context,
+                                label: 'فاتح',
+                                icon: LucideIcons.sun,
+                                isSelected: currentMode == ThemeMode.light,
+                                onTap: () => themeProvider.setThemeMode(ThemeMode.light),
+                              ),
+                              _buildThemeBtn(
+                                context: context,
+                                label: 'داكن',
+                                icon: LucideIcons.moon,
+                                isSelected: currentMode == ThemeMode.dark,
+                                onTap: () => themeProvider.setThemeMode(ThemeMode.dark),
+                              ),
+                              _buildThemeBtn(
+                                context: context,
+                                label: 'تلقائي',
+                                icon: LucideIcons.monitor,
+                                isSelected: currentMode == ThemeMode.system,
+                                onTap: () => themeProvider.setThemeMode(ThemeMode.system),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+
               // ── 1. Presets List ──────────────────────────────────────────
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors.surface,
+                  color: AppColors.surfaceOf(context),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppColors.border),
+                  border: Border.all(color: AppColors.borderOf(context)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
+                    Row(
                       children: [
-                        Icon(LucideIcons.palette, size: 18, color: AppColors.primary),
-                        SizedBox(width: 8),
-                        Text('الباليتات والأنماط الجاهزة', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.text)),
+                        const Icon(LucideIcons.palette, size: 18, color: AppColors.primary),
+                        const SizedBox(width: 8),
+                        Text(
+                          'الباليتات والأنماط الجاهزة للواجهة',
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.textOf(context)),
+                        ),
                       ],
                     ),
-                    const Divider(height: 20, color: AppColors.divider),
+                    Divider(height: 20, color: AppColors.dividerOf(context)),
                     ..._presetPalettes.map((p) {
                       final isSelected = _selectedThemeName == p['id'];
                       final colorP = _parseColor(p['primary'], Colors.blue);
@@ -190,10 +296,10 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
                       return Container(
                         margin: const EdgeInsets.only(bottom: 10),
                         decoration: BoxDecoration(
-                          color: isSelected ? AppColors.primaryBg : AppColors.surface,
+                          color: isSelected ? AppColors.primaryBgOf(context) : AppColors.surfaceOf(context),
                           borderRadius: BorderRadius.circular(14),
                           border: Border.all(
-                            color: isSelected ? AppColors.primary : AppColors.border,
+                            color: isSelected ? AppColors.primary : AppColors.borderOf(context),
                             width: isSelected ? 1.5 : 1,
                           ),
                         ),
@@ -205,7 +311,7 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
-                              color: isSelected ? AppColors.primary : AppColors.text,
+                              color: isSelected ? AppColors.primary : AppColors.textOf(context),
                             ),
                           ),
                           trailing: Row(
@@ -230,21 +336,21 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors.surface,
+                  color: AppColors.surfaceOf(context),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppColors.border),
+                  border: Border.all(color: AppColors.borderOf(context)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
+                    Row(
                       children: [
-                        Icon(LucideIcons.sliders, size: 18, color: AppColors.primary),
-                        SizedBox(width: 8),
-                        Text('تخصيص كود الألوان (Hex)', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.text)),
+                        const Icon(LucideIcons.sliders, size: 18, color: AppColors.primary),
+                        const SizedBox(width: 8),
+                        Text('تخصيص كود الألوان (Hex)', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.textOf(context))),
                       ],
                     ),
-                    const Divider(height: 20, color: AppColors.divider),
+                    Divider(height: 20, color: AppColors.dividerOf(context)),
                     _hexInputField(_primaryHexController, 'اللون الأساسي (Primary)', '#5C6AC4'),
                     const SizedBox(height: 12),
                     _hexInputField(_secondaryHexController, 'اللون الثانوي (Secondary)', '#1E1B4B'),
@@ -254,6 +360,51 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
                 ),
               ),
               const SizedBox(height: 30),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildThemeBtn({
+    required BuildContext context,
+    required String label,
+    required IconData icon,
+    required bool isSelected,
+    required VoidCallback onTap,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(
+            color: isSelected ? AppColors.primary : Colors.transparent,
+            borderRadius: BorderRadius.circular(9),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 14,
+                color: isSelected
+                    ? Colors.white
+                    : (isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280)),
+              ),
+              const SizedBox(width: 5),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: isSelected ? FontWeight.w900 : FontWeight.w700,
+                  color: isSelected
+                      ? Colors.white
+                      : (isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280)),
+                ),
+              ),
             ],
           ),
         ),
@@ -283,7 +434,7 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
           decoration: BoxDecoration(
             color: currentColor,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: AppColors.borderOf(context)),
           ),
         ),
         const SizedBox(width: 12),
@@ -291,17 +442,18 @@ class _AppearanceSettingsScreenState extends State<AppearanceSettingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.text)),
+              Text(label, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textOf(context))),
               const SizedBox(height: 4),
               TextField(
                 controller: controller,
                 textDirection: TextDirection.ltr,
+                style: TextStyle(color: AppColors.textOf(context), fontSize: 13),
                 onChanged: (_) => setState(() {}),
                 decoration: InputDecoration(
                   hintText: hint,
-                  hintStyle: const TextStyle(fontSize: 12, color: AppColors.textMuted),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.border)),
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.border)),
+                  hintStyle: TextStyle(fontSize: 12, color: AppColors.textMutedOf(context)),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.borderOf(context))),
+                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.borderOf(context))),
                   focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.primary, width: 1.5)),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                 ),

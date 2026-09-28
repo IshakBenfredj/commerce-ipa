@@ -35,9 +35,9 @@ class KpiCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: AppColors.surface,
+            color: AppColors.surfaceOf(context),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: AppColors.borderOf(context)),
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFF1E1B4B).withValues(alpha: 0.02),
@@ -68,8 +68,7 @@ class KpiCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
-                        color: (badgeColor ?? AppColors.primary)
-                            .withValues(alpha: 0.12),
+                        color: (badgeColor ?? AppColors.primary).withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -86,10 +85,10 @@ class KpiCard extends StatelessWidget {
               const Spacer(),
               Text(
                 value,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
-                  color: AppColors.text,
+                  color: AppColors.textOf(context),
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -98,10 +97,10 @@ class KpiCard extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.textSub,
+                  color: AppColors.textSubOf(context),
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -111,9 +110,9 @@ class KpiCard extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   subtitle!,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 10,
-                    color: AppColors.textMuted,
+                    color: AppColors.textMutedOf(context),
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

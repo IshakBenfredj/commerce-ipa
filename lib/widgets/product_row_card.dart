@@ -30,9 +30,9 @@ class ProductRowCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppColors.surface,
+            color: AppColors.surfaceOf(context),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: AppColors.borderOf(context)),
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFF1E1B4B).withValues(alpha: 0.02),
@@ -50,7 +50,7 @@ class ProductRowCard extends StatelessWidget {
                 child: Container(
                   width: 70,
                   height: 70,
-                  color: AppColors.primaryBg,
+                  color: AppColors.primaryBgOf(context),
                   child: product.images.isNotEmpty
                       ? Image.network(
                           product.images.first,
@@ -73,10 +73,10 @@ class ProductRowCard extends StatelessWidget {
                   children: [
                     Text(
                       product.titleAr,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w800,
-                        color: AppColors.text,
+                        color: AppColors.textOf(context),
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -98,9 +98,9 @@ class ProductRowCard extends StatelessWidget {
                           const SizedBox(width: 6),
                           Text(
                             '${currencyFormatter.format(product.compareAtPrice)} د.ج',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 11,
-                              color: AppColors.textMuted,
+                              color: AppColors.textMutedOf(context),
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
@@ -125,7 +125,7 @@ class ProductRowCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
-                            color: product.stockQuantity > 5 ? AppColors.textSub : AppColors.danger,
+                            color: product.stockQuantity > 5 ? AppColors.textSubOf(context) : AppColors.danger,
                           ),
                         ),
                         if (product.isFeatured) ...[
@@ -133,7 +133,7 @@ class ProductRowCard extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
                             decoration: BoxDecoration(
-                              color: AppColors.warningBg,
+                              color: AppColors.isDark(context) ? AppColors.darkWarningBg : AppColors.warningBg,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: const Text(
@@ -149,7 +149,7 @@ class ProductRowCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               // Trailing arrow
-              const Icon(LucideIcons.chevronLeft, size: 18, color: AppColors.textMuted),
+              Icon(LucideIcons.chevronLeft, size: 18, color: AppColors.textMutedOf(context)),
             ],
           ),
         ),

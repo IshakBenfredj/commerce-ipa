@@ -21,7 +21,7 @@ class OrderRowCard extends StatelessWidget {
     final dateStr = DateFormat('yyyy/MM/dd - HH:mm').format(order.createdAt);
 
     final statusColor = AppColors.getStatusColor(order.status);
-    final statusBg = AppColors.getStatusBgColor(order.status);
+    final statusBg = AppColors.statusBgOf(context, order.status);
     final statusLabel = AppColors.getStatusLabelAr(order.status);
 
     return Material(
@@ -32,9 +32,9 @@ class OrderRowCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: AppColors.surface,
+            color: AppColors.surfaceOf(context),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: AppColors.borderOf(context)),
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFF1E1B4B).withValues(alpha: 0.02),
@@ -58,7 +58,7 @@ class OrderRowCard extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: AppColors.primaryBg,
+                          color: AppColors.primaryBgOf(context),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
@@ -73,9 +73,9 @@ class OrderRowCard extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         dateStr,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 10,
-                          color: AppColors.textMuted,
+                          color: AppColors.textMutedOf(context),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -98,9 +98,9 @@ class OrderRowCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Divider(height: 1, color: AppColors.divider),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Divider(height: 1, color: AppColors.dividerOf(context)),
               ),
               // Body: Customer Info & Destination
               Row(
@@ -110,7 +110,7 @@ class OrderRowCard extends StatelessWidget {
                     width: 38,
                     height: 38,
                     decoration: BoxDecoration(
-                      color: AppColors.primaryBg,
+                      color: AppColors.primaryBgOf(context),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Icon(LucideIcons.user, size: 18, color: AppColors.primary),
@@ -123,10 +123,10 @@ class OrderRowCard extends StatelessWidget {
                       children: [
                         Text(
                           order.customerName,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w800,
-                            color: AppColors.text,
+                            color: AppColors.textOf(context),
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -136,14 +136,14 @@ class OrderRowCard extends StatelessWidget {
                         Row(
                           textDirection: TextDirection.rtl,
                           children: [
-                            const Icon(LucideIcons.mapPin, size: 12, color: AppColors.textMuted),
+                            Icon(LucideIcons.mapPin, size: 12, color: AppColors.textMutedOf(context)),
                             const SizedBox(width: 4),
                             Expanded(
                               child: Text(
                                 '${order.shippingWilaya} ${order.shippingCity.isNotEmpty ? "• ${order.shippingCity}" : ""}',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 11,
-                                  color: AppColors.textSub,
+                                  color: AppColors.textSubOf(context),
                                   fontWeight: FontWeight.w500,
                                 ),
                                 maxLines: 1,
@@ -179,9 +179,9 @@ class OrderRowCard extends StatelessWidget {
                           const SizedBox(width: 3),
                           Text(
                             order.deliveryType == 'desk' ? 'توصيل مكتب' : 'توصيل منزل',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 10,
-                              color: AppColors.textMuted,
+                              color: AppColors.textMutedOf(context),
                               fontWeight: FontWeight.w600,
                             ),
                           ),

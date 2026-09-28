@@ -30,16 +30,33 @@ dependencies:
   file_picker: ^8.0.0
   image_picker: ^1.1.0
   lucide_icons_flutter: ^3.1.19
+  # Notifications & Background
   flutter_local_notifications: ^22.3.0
   flutter_background_service: ^5.1.0
+  firebase_core: ^3.12.1
+  firebase_messaging: ^15.2.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/images/app_icon.png"
+  web:
+    generate: true
+    image_path: "assets/images/app_icon.png"
 
 flutter:
   uses-material-design: true
 
   assets:
     - assets/data/wilayas_tarifs.json
+    - assets/images/
+

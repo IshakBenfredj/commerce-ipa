@@ -86,15 +86,29 @@ class _AboutSettingsScreenState extends State<AboutSettingsScreen> {
                       width: 72,
                       height: 72,
                       decoration: BoxDecoration(
-                        color: AppColors.primaryBg,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                             color: AppColors.primary.withValues(alpha: 0.2),
                             width: 2),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primary.withValues(alpha: 0.08),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
+                          )
+                        ],
                       ),
-                      child: const Center(
-                        child: Icon(LucideIcons.store,
-                            size: 36, color: AppColors.primary),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: Image.asset(
+                          'assets/images/app_icon.png',
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => const Center(
+                            child: Icon(LucideIcons.store,
+                                size: 36, color: AppColors.primary),
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -170,7 +184,7 @@ class _AboutSettingsScreenState extends State<AboutSettingsScreen> {
                       textDirection: TextDirection.ltr,
                       decoration: InputDecoration(
                         labelText: 'رابط الخادم API URL',
-                        hintText: 'http://192.168.8.200:5000/api',
+                        hintText: 'https://${ApiEndpoints.defaultLocalIp}/api',
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12)),
                         contentPadding: const EdgeInsets.symmetric(

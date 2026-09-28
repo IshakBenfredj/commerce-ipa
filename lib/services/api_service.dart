@@ -200,6 +200,48 @@ class ApiService {
     return [];
   }
 
+  Future<bool> saveCategory(Category category) async {
+    try {
+      final payload = category.toJson();
+      http.Response res;
+
+      if (category.id.isNotEmpty) {
+        final uri = Uri.parse('${ApiEndpoints.categoryCrud}/${category.id}');
+        res = await http.put(uri, headers: _headers, body: jsonEncode(payload))
+            .timeout(const Duration(seconds: 12));
+      } else {
+        final uri = Uri.parse(ApiEndpoints.categoryCrud);
+        res = await http.post(uri, headers: _headers, body: jsonEncode(payload))
+            .timeout(const Duration(seconds: 12));
+      }
+
+      if (res.statusCode == 200 || res.statusCode == 201) {
+        final data = jsonDecode(utf8.decode(res.bodyBytes));
+        return data['success'] == true;
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('ApiService.saveCategory error: $e');
+    }
+    return false;
+  }
+
+  Future<bool> deleteCategory(String id) async {
+    try {
+      final uri = Uri.parse('${ApiEndpoints.categoryCrud}/$id');
+      final res = await http.delete(uri, headers: _headers)
+          .timeout(const Duration(seconds: 10));
+      if (res.statusCode == 200) {
+        final data = jsonDecode(utf8.decode(res.bodyBytes));
+        return data['success'] == true;
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('ApiService.deleteCategory error: $e');
+    }
+    return false;
+  }
+
   // ── Store Settings ─────────────────────────────────────────────────────
   Future<StoreSettings?> getStoreSettings() async {
     try {
@@ -314,5 +356,31 @@ class ApiService {
       print('ApiService.deleteCoupon error: $e');
     }
     return false;
+  }
+
+  // ── Image Upload (Direct Cloudinary from Mobile) ───────────────────────────
+  Future<String?> uploadImageBase64(String base64Data, {String folder = 'ecommerce/products'}) async {
+    try {
+      final uri = Uri.parse('${ApiEndpoints.baseUrl}/upload/base64');
+      final res = await http.post(
+        uri,
+        headers: _headers,
+        body: jsonEncode({
+          'image': base64Data,
+          'folder': folder,
+        }),
+      ).timeout(const Duration(seconds: 30));
+
+      if (res.statusCode == 200) {
+        final data = jsonDecode(utf8.decode(res.bodyBytes));
+        if (data['success'] == true && data['url'] != null) {
+          return data['url'].toString();
+        }
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('ApiService.uploadImageBase64 error: $e');
+    }
+    return null;
   }
 }

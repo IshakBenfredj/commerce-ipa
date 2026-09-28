@@ -21,6 +21,7 @@ class OrdersScreen extends StatelessWidget {
       {'id': 'shipped', 'label': 'تم الشحن'},
       {'id': 'delivered', 'label': 'تم التوصيل'},
       {'id': 'cancelled', 'label': 'ملغاة'},
+      {'id': 'returned', 'label': 'مسترجعة'},
     ];
 
     return SafeArea(

@@ -1,14 +1,13 @@
 class ApiEndpoints {
   // Default server URLs
-  // 192.168.8.200 is the local Wi-Fi IP of the host machine
-  static const String defaultLocalIp = "192.168.8.200";
-  static const String defaultPort = "5000";
+  static const String defaultLocalIp = "exommerceakmed.onrender.com";
+  static const String defaultPort = "";
 
-  static String baseUrl = "http://192.168.8.200:5000/api";
-  static String socketUrl = "http://192.168.8.200:5000";
+  static String baseUrl = "https://exommerceakmed.onrender.com/api";
+  static String socketUrl = "https://exommerceakmed.onrender.com";
 
   // Admin secret key
-  static const String adminApiKey = "admin_secret_key_0541790205";
+  static const String adminApiKey = "AUKV1eVO3A80KgJ5";
 
   // Endpoints
   static String get orders => "$baseUrl/orders";
@@ -22,14 +21,22 @@ class ApiEndpoints {
   static String get upload => "$baseUrl/upload";
   static String get coupons => "$baseUrl/coupons";
 
-  static void setBaseHost(String host, {String port = "5000"}) {
-    String cleanHost = host.replaceAll(RegExp(r'^https?:\/\/'), '').replaceAll(RegExp(r'\/.*$'), '');
-    if (cleanHost.contains(':')) {
+  static void setBaseHost(String host, {String port = ""}) {
+    String cleanHost = host
+        .replaceAll(RegExp(r'^https?:\/\/'), '')
+        .replaceAll(RegExp(r'\/.*$'), '');
+    if (cleanHost.contains('.onrender.com') || cleanHost.contains('.')) {
+      baseUrl = "https://$cleanHost/api";
+      socketUrl = "https://$cleanHost";
+    } else if (cleanHost.contains(':')) {
       baseUrl = "http://$cleanHost/api";
       socketUrl = "http://$cleanHost";
-    } else {
+    } else if (port.isNotEmpty) {
       baseUrl = "http://$cleanHost:$port/api";
       socketUrl = "http://$cleanHost:$port";
+    } else {
+      baseUrl = "https://$cleanHost/api";
+      socketUrl = "https://$cleanHost";
     }
   }
 }

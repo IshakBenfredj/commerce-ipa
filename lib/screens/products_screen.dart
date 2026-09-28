@@ -5,6 +5,7 @@ import '../constants/colors.dart';
 import '../providers/products_provider.dart';
 import '../widgets/product_row_card.dart';
 import 'product_form_screen.dart';
+import 'categories_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -25,9 +26,9 @@ class ProductsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               textDirection: TextDirection.rtl,
               children: [
+                // Row 1: Title + action buttons
                 Row(
                   textDirection: TextDirection.rtl,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
                       'إدارة المنتجات',
@@ -37,6 +38,27 @@ class ProductsScreen extends StatelessWidget {
                         color: AppColors.text,
                       ),
                     ),
+                    const Spacer(),
+                    // ── Manage Categories Button ──
+                    OutlinedButton.icon(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => const CategoriesScreen()),
+                        );
+                      },
+                      icon: const Icon(LucideIcons.layoutGrid, size: 15),
+                      label: const Text('الأقسام',
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800)),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: AppColors.primary,
+                        side: const BorderSide(color: AppColors.primary),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    // ── Add Product Button ──
                     ElevatedButton.icon(
                       onPressed: () {
                         Navigator.of(context).push(
@@ -44,13 +66,15 @@ class ProductsScreen extends StatelessWidget {
                         );
                       },
                       icon: const Icon(LucideIcons.plus, size: 16),
-                      label: const Text('منتج جديد', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800)),
+                      label: const Text('منتج جديد',
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         foregroundColor: Colors.white,
                         elevation: 0,
                         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
                       ),
                     ),
                   ],

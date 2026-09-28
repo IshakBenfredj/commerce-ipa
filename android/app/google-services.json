@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "661116554239",
+    "project_id": "akmed-c2ac6",
+    "storage_bucket": "akmed-c2ac6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661116554239:android:132bbd5ae4b447fd45f5ca",
+        "android_client_info": {
+          "package_name": "com.algerianstore.app_dashf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOZHFIfzsRw74w5-Tvt0UA88YB0MliBz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

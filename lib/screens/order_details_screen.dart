@@ -108,11 +108,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         _isUpdating = false;
                         if (success) _order.status = st['key'] as String;
                       });
+                      final String newSt = st['key'] as String;
+                      final String msg = success
+                          ? (newSt == 'cancelled' || newSt == 'returned'
+                              ? 'تم تحديث الحالة وإرجاع كميات المنتجات إلى المخزون 📦'
+                              : 'تم تحديث حالة الطلب بنجاح')
+                          : 'تعذر تحديث الحالة';
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(success
-                              ? 'تم تحديث حالة الطلب بنجاح'
-                              : 'تعذر تحديث الحالة'),
+                          content: Text(msg),
                           backgroundColor:
                               success ? AppColors.success : AppColors.danger,
                         ),

@@ -47,6 +47,18 @@ class _ShippingSettingsScreenState extends State<ShippingSettingsScreen> {
     _searchController = TextEditingController();
 
     _wilayas = List.from(s?.wilayasShipping ?? []);
+    if (_wilayas.isEmpty) {
+      _wilayas = WilayaTarif.defaultWilayaNames.entries.map((e) {
+        return WilayaTarif(
+          code: e.key,
+          nameAr: e.value.$1,
+          nameFr: e.value.$2,
+          tarifDomicile: s?.defaultHomeShippingCost ?? 700,
+          tarifBureau: s?.defaultDeskShippingCost ?? 400,
+          active: true,
+        );
+      }).toList();
+    }
   }
 
   @override
@@ -72,7 +84,8 @@ class _ShippingSettingsScreenState extends State<ShippingSettingsScreen> {
     return _wilayas.where((w) {
       return w.code.toString().contains(q) ||
           w.nameAr.toLowerCase().contains(q) ||
-          w.nameFr.toLowerCase().contains(q);
+          w.nameFr.toLowerCase().contains(q) ||
+          w.displayName.toLowerCase().contains(q);
     }).toList();
   }
 
@@ -594,7 +607,7 @@ class _ShippingSettingsScreenState extends State<ShippingSettingsScreen> {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                '${w.nameAr} (${w.nameFr})',
+                                w.displayName,
                                 style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text),
                               ),
                             ],

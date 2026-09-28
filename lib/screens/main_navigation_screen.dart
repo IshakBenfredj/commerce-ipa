@@ -64,7 +64,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.bg,
+        backgroundColor: AppColors.bgOf(context),
         body: Stack(
           children: [
             // Active Tab Body
@@ -95,9 +95,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
-            color: AppColors.surface,
-            border: const Border(
-                top: BorderSide(color: AppColors.border, width: 1)),
+            color: AppColors.surfaceOf(context),
+            border: Border(
+                top: BorderSide(color: AppColors.borderOf(context), width: 1)),
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFF1E1B4B).withValues(alpha: 0.04),
@@ -110,9 +110,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             currentIndex: _currentIndex,
             onTap: _onTabTapped,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.surface,
+            backgroundColor: AppColors.surfaceOf(context),
             selectedItemColor: AppColors.primary,
-            unselectedItemColor: AppColors.textMuted,
+            unselectedItemColor: AppColors.textMutedOf(context),
             selectedLabelStyle:
                 const TextStyle(fontWeight: FontWeight.w800, fontSize: 11),
             unselectedLabelStyle:

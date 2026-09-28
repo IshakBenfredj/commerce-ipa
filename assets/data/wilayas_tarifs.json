@@ -3,345 +3,485 @@
     {
       "code": 1,
       "name_ar": "أدرار",
-      "name_fr": "ADRAR",
-      "tarif_domicile": 1650,
-      "tarif_bureau": 1550
+      "name_fr": "Adrar",
+      "tarif_domicile": 1400,
+      "tarif_bureau": 900
     },
     {
       "code": 2,
       "name_ar": "الشلف",
-      "name_fr": "CHLEF",
-      "tarif_domicile": 500,
-      "tarif_bureau": 400
+      "name_fr": "Chlef",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
     },
     {
       "code": 3,
       "name_ar": "الأغواط",
-      "name_fr": "LAGHOUAT",
-      "tarif_domicile": 850,
-      "tarif_bureau": 700
+      "name_fr": "Laghouat",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
     },
     {
       "code": 4,
       "name_ar": "أم البواقي",
-      "name_fr": "OUM EL BOUAGHI",
+      "name_fr": "Oum El Bouaghi",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 5,
       "name_ar": "باتنة",
-      "name_fr": "BATNA",
+      "name_fr": "Batna",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 6,
       "name_ar": "بجاية",
-      "name_fr": "BEJAIA",
+      "name_fr": "Béjaïa",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 7,
       "name_ar": "بسكرة",
-      "name_fr": "BISKRA",
-      "tarif_domicile": 850,
-      "tarif_bureau": 700
+      "name_fr": "Biskra",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
     },
     {
       "code": 8,
       "name_ar": "بشار",
-      "name_fr": "BECHAR",
-      "tarif_domicile": 1650,
-      "tarif_bureau": 1550
+      "name_fr": "Béchar",
+      "tarif_domicile": 950,
+      "tarif_bureau": 550
     },
     {
       "code": 9,
       "name_ar": "البليدة",
-      "name_fr": "BLIDA",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Blida",
+      "tarif_domicile": 550,
+      "tarif_bureau": 300
     },
     {
       "code": 10,
       "name_ar": "البويرة",
-      "name_fr": "BOUIRA",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Bouira",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
     },
     {
       "code": 11,
       "name_ar": "تمنراست",
-      "name_fr": "TAMANRASSET",
-      "tarif_domicile": 1650,
-      "tarif_bureau": 1550
+      "name_fr": "Tamanrasset",
+      "tarif_domicile": 1600,
+      "tarif_bureau": 1000
     },
     {
       "code": 12,
       "name_ar": "تبسة",
-      "name_fr": "TEBESSA",
-      "tarif_domicile": 850,
-      "tarif_bureau": 700
+      "name_fr": "Tébessa",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
     },
     {
       "code": 13,
       "name_ar": "تلمسان",
-      "name_fr": "TLEMCEN",
+      "name_fr": "Tlemcen",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 14,
       "name_ar": "تيارت",
-      "name_fr": "TIARET",
+      "name_fr": "Tiaret",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 15,
       "name_ar": "تيزي وزو",
-      "name_fr": "TIZI OUZOU",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Tizi Ouzou",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
     },
     {
       "code": 16,
-      "name_ar": "الجزائر",
-      "name_fr": "ALGER",
-      "tarif_domicile": 550,
-      "tarif_bureau": 450
+      "name_ar": "الجزائر العاصمة",
+      "name_fr": "Alger",
+      "tarif_domicile": 450,
+      "tarif_bureau": 250
     },
     {
       "code": 17,
       "name_ar": "الجلفة",
-      "name_fr": "DJELFA",
-      "tarif_domicile": 850,
-      "tarif_bureau": 700
+      "name_fr": "Djelfa",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
     },
     {
       "code": 18,
       "name_ar": "جيجل",
-      "name_fr": "JIJEL",
+      "name_fr": "Jijel",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 19,
       "name_ar": "سطيف",
-      "name_fr": "SETIF",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Sétif",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
     },
     {
       "code": 20,
       "name_ar": "سعيدة",
-      "name_fr": "SAIDA",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Saïda",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
     },
     {
       "code": 21,
       "name_ar": "سكيكدة",
-      "name_fr": "SKIKDA",
+      "name_fr": "Skikda",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 22,
       "name_ar": "سيدي بلعباس",
-      "name_fr": "SIDI BEL ABBESS",
+      "name_fr": "Sidi Bel Abbès",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 23,
       "name_ar": "عنابة",
-      "name_fr": "ANNABA",
+      "name_fr": "Annaba",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 24,
       "name_ar": "قالمة",
-      "name_fr": "GUELMA",
+      "name_fr": "Guelma",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 25,
       "name_ar": "قسنطينة",
-      "name_fr": "CONSTANTINE",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Constantine",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
     },
     {
       "code": 26,
       "name_ar": "المدية",
-      "name_fr": "MEDEA",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Médéa",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
     },
     {
       "code": 27,
       "name_ar": "مستغانم",
-      "name_fr": "MOSTAGANEM",
-      "tarif_domicile": 550,
-      "tarif_bureau": 450
+      "name_fr": "Mostaganem",
+      "tarif_domicile": 700,
+      "tarif_bureau": 400
     },
     {
       "code": 28,
       "name_ar": "المسيلة",
-      "name_fr": "M'SILA",
+      "name_fr": "M'Sila",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 29,
       "name_ar": "معسكر",
-      "name_fr": "MASCARA",
+      "name_fr": "Mascara",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 30,
       "name_ar": "ورقلة",
-      "name_fr": "QUARGLA",
+      "name_fr": "Ouargla",
       "tarif_domicile": 850,
-      "tarif_bureau": 700
+      "tarif_bureau": 500
     },
     {
       "code": 31,
       "name_ar": "وهران",
-      "name_fr": "ORAN",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Oran",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
     },
     {
       "code": 32,
       "name_ar": "البيض",
-      "name_fr": "EL BAYADH",
-      "tarif_domicile": 1650,
-      "tarif_bureau": 1550
+      "name_fr": "El Bayadh",
+      "tarif_domicile": 850,
+      "tarif_bureau": 500
+    },
+    {
+      "code": 33,
+      "name_ar": "إليزي",
+      "name_fr": "Illizi",
+      "tarif_domicile": 1500,
+      "tarif_bureau": 950
     },
     {
       "code": 34,
       "name_ar": "برج بوعريريج",
-      "name_fr": "BORDJ BOU ARRERIDJ",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Bordj Bou Arréridj",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
     },
     {
       "code": 35,
       "name_ar": "بومرداس",
-      "name_fr": "BOUMERDES",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Boumerdès",
+      "tarif_domicile": 550,
+      "tarif_bureau": 300
     },
     {
       "code": 36,
       "name_ar": "الطارف",
-      "name_fr": "EL TARF",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "El Tarf",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
+    },
+    {
+      "code": 37,
+      "name_ar": "تندوف",
+      "name_fr": "Tindouf",
+      "tarif_domicile": 1500,
+      "tarif_bureau": 950
     },
     {
       "code": 38,
-      "name_ar": "تيسمسيلت",
-      "name_fr": "TISSEMSILT",
-      "tarif_domicile": 550,
-      "tarif_bureau": 450
+      "name_ar": "تسمسيلت",
+      "name_fr": "Tissemsilt",
+      "tarif_domicile": 700,
+      "tarif_bureau": 400
     },
     {
       "code": 39,
       "name_ar": "الوادي",
-      "name_fr": "EL OUED",
-      "tarif_domicile": 850,
-      "tarif_bureau": 700
+      "name_fr": "El Oued",
+      "tarif_domicile": 800,
+      "tarif_bureau": 450
     },
     {
       "code": 40,
       "name_ar": "خنشلة",
-      "name_fr": "KHENCHELA",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Khenchela",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
     },
     {
       "code": 41,
       "name_ar": "سوق أهراس",
-      "name_fr": "SOUK AHRAS",
-      "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "name_fr": "Souk Ahras",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
     },
     {
       "code": 42,
       "name_ar": "تيبازة",
-      "name_fr": "TIPAZA",
+      "name_fr": "Tipaza",
       "tarif_domicile": 550,
-      "tarif_bureau": 450
+      "tarif_bureau": 300
     },
     {
       "code": 43,
       "name_ar": "ميلة",
-      "name_fr": "MILA",
+      "name_fr": "Mila",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 44,
       "name_ar": "عين الدفلى",
-      "name_fr": "AIN DEFLA",
-      "tarif_domicile": 550,
-      "tarif_bureau": 450
+      "name_fr": "Aïn Defla",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
     },
     {
       "code": 45,
       "name_ar": "النعامة",
-      "name_fr": "NAAMA",
-      "tarif_domicile": 1650,
-      "tarif_bureau": 1550
+      "name_fr": "Naâma",
+      "tarif_domicile": 850,
+      "tarif_bureau": 500
     },
     {
       "code": 46,
       "name_ar": "عين تموشنت",
-      "name_fr": "AIN TEMOUCHENT",
+      "name_fr": "Aïn Témouchent",
       "tarif_domicile": 700,
-      "tarif_bureau": 600
+      "tarif_bureau": 400
     },
     {
       "code": 47,
       "name_ar": "غرداية",
-      "name_fr": "GHARDAIA",
+      "name_fr": "Ghardaïa",
       "tarif_domicile": 850,
-      "tarif_bureau": 700
+      "tarif_bureau": 500
     },
     {
       "code": 48,
       "name_ar": "غليزان",
-      "name_fr": "RELIZANE",
-      "tarif_domicile": 550,
-      "tarif_bureau": 450
+      "name_fr": "Relizane",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
+    },
+    {
+      "code": 49,
+      "name_ar": "تيميمون",
+      "name_fr": "Timimoun",
+      "tarif_domicile": 1300,
+      "tarif_bureau": 800
+    },
+    {
+      "code": 50,
+      "name_ar": "برج باجي مختار",
+      "name_fr": "Bordj Badji Mokhtar",
+      "tarif_domicile": 1650,
+      "tarif_bureau": 1100
     },
     {
       "code": 51,
       "name_ar": "أولاد جلال",
-      "name_fr": "OULED DJELLAL",
-      "tarif_domicile": 850,
-      "tarif_bureau": 700
+      "name_fr": "Ouled Djellal",
+      "tarif_domicile": 800,
+      "tarif_bureau": 450
     },
     {
       "code": 52,
       "name_ar": "بني عباس",
-      "name_fr": "BENI ABBES",
+      "name_fr": "Béni Abbès",
+      "tarif_domicile": 1300,
+      "tarif_bureau": 800
+    },
+    {
+      "code": 53,
+      "name_ar": "عين صالح",
+      "name_fr": "In Salah",
+      "tarif_domicile": 1400,
+      "tarif_bureau": 900
+    },
+    {
+      "code": 54,
+      "name_ar": "عين قزام",
+      "name_fr": "In Guezzam",
       "tarif_domicile": 1650,
-      "tarif_bureau": 1550
+      "tarif_bureau": 1100
     },
     {
       "code": 55,
       "name_ar": "تقرت",
-      "name_fr": "TOUGGOURT",
+      "name_fr": "Touggourt",
       "tarif_domicile": 850,
-      "tarif_bureau": 700
+      "tarif_bureau": 500
+    },
+    {
+      "code": 56,
+      "name_ar": "جانت",
+      "name_fr": "Djanet",
+      "tarif_domicile": 1600,
+      "tarif_bureau": 1000
+    },
+    {
+      "code": 57,
+      "name_ar": "المغير",
+      "name_fr": "El M'Ghair",
+      "tarif_domicile": 850,
+      "tarif_bureau": 500
+    },
+    {
+      "code": 58,
+      "name_ar": "المنيعة",
+      "name_fr": "El Meniaa",
+      "tarif_domicile": 900,
+      "tarif_bureau": 550
+    },
+    {
+      "code": 59,
+      "name_ar": "العلمة",
+      "name_fr": "El Eulma",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
+    },
+    {
+      "code": 60,
+      "name_ar": "بوسعادة",
+      "name_fr": "Bou Saâda",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
+    },
+    {
+      "code": 61,
+      "name_ar": "سور الغزلان",
+      "name_fr": "Sour El Ghozlane",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
+    },
+    {
+      "code": 62,
+      "name_ar": "قصر الشلالة",
+      "name_fr": "Ksar Chellala",
+      "tarif_domicile": 700,
+      "tarif_bureau": 400
+    },
+    {
+      "code": 63,
+      "name_ar": "بريكة",
+      "name_fr": "Barika",
+      "tarif_domicile": 700,
+      "tarif_bureau": 400
+    },
+    {
+      "code": 64,
+      "name_ar": "عين وسارة",
+      "name_fr": "Aïn Oussara",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
+    },
+    {
+      "code": 65,
+      "name_ar": "مسعد",
+      "name_fr": "Messaad",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
+    },
+    {
+      "code": 66,
+      "name_ar": "أفلو",
+      "name_fr": "Aflou",
+      "tarif_domicile": 750,
+      "tarif_bureau": 400
+    },
+    {
+      "code": 67,
+      "name_ar": "مغنية",
+      "name_fr": "Maghnia",
+      "tarif_domicile": 700,
+      "tarif_bureau": 400
+    },
+    {
+      "code": 68,
+      "name_ar": "الأربعاء نايث إيراثن",
+      "name_fr": "Larbaâ Nath Irathen",
+      "tarif_domicile": 650,
+      "tarif_bureau": 350
+    },
+    {
+      "code": 69,
+      "name_ar": "الدبيلة",
+      "name_fr": "Debila",
+      "tarif_domicile": 800,
+      "tarif_bureau": 450
     }
   ]
 }
